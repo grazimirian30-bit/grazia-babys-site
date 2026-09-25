@@ -6,8 +6,61 @@
     "instagram": "",
     "slogan": "Pequenos detalhes, muito carinho.",
     "titulo_produtos": "Coleção Grazia Baby",
-    "texto_contato": "Escolha suas peças favoritas e fale conosco para confirmar tamanhos, cores, estoque, entrega e pagamento."
+    "texto_contato": "Escolha suas peças favoritas e fale conosco para confirmar tamanhos, cores, estoque, entrega e pagamento.",
+    "cor_primaria": "#84533e",
+    "cor_secundaria": "#ffb3c6",
+    "cor_fundo": "#fff9f5",
+    "cor_texto": "#4a342c",
+    "logo_path": "img/logo-grazia-baby.png",
+    "papel_parede": null,
+    "texto_topo_1": "Peças delicadas para o seu bebê",
+    "texto_topo_2": "Atendimento pelo WhatsApp",
+    "texto_topo_3": "Consulte entrega e pagamento"
   },
+  "capa": {
+    "titulo": "Pequenos detalhes, grandes memórias",
+    "subtitulo": "Uma seleção delicada de bodies, macacões e conjuntos para os primeiros momentos.",
+    "texto_botao": "Ver produtos",
+    "link_botao": "#produtos",
+    "imagem_desktop": "uploads/capas/ea7ced2881c04b3d8b532b2c14f6c047.png",
+    "imagem_mobile": "uploads/capas/8e3bd01c573345c0b721bdd219a04acc.png",
+    "cor_texto": "#4b3429",
+    "cor_botao": "#6b4d3e",
+    "overlay": 0.05,
+    "alinhamento": "esquerda"
+  },
+  "categorias": [
+    {
+      "nome": "Bodies Artesanais",
+      "descricao": "Peças delicadas com acabamento artesanal",
+      "icone": "🧸",
+      "imagem": "uploads/categorias/7dae242bf4e04bcd81938920df10b272.png"
+    },
+    {
+      "nome": "Macacões",
+      "descricao": "Conforto para acompanhar cada momento",
+      "icone": "♡",
+      "imagem": "uploads/categorias/3d0ed8d9df1542278c0585e0ed121ad4.png"
+    },
+    {
+      "nome": "CONJUNTOS",
+      "descricao": "Combinações prontas para um look completo",
+      "icone": "✦",
+      "imagem": "uploads/categorias/f2c02195f66443c0bda33e01e06e8479.png"
+    },
+    {
+      "nome": "Acessórios",
+      "descricao": "Detalhes especiais para completar o visual",
+      "icone": "🎀",
+      "imagem": "img/catalogo/categorias/acessorios.jpg"
+    },
+    {
+      "nome": "CASACOS",
+      "descricao": "Detalhes especiais para completar o visual",
+      "icone": "🎀",
+      "imagem": "uploads/categorias/b0e2440264ea4fbfb3556fb705b430fb.png"
+    }
+  ],
   "produtos": [
     {
       "id": 10,
