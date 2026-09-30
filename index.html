@@ -3,7 +3,26 @@
 <div class="top-strip"><span>Peças delicadas para o seu bebê</span><span>Atendimento pelo WhatsApp</span><span>Consulte entrega e pagamento</span></div>
 <header class="site-header"><div class="container header-row"><a class="brand brand-text" href="#inicio">Grazia <span>Babys</span></a><button class="menu-button" type="button" aria-label="Abrir menu">☰</button><nav class="main-menu"><a href="#inicio">Início</a><a href="#produtos">Catálogo</a><a href="#contato">Contato</a></nav></div></header>
 <main style="--store-primary:#6B4636;--store-accent:#D89AAA;--store-bg:#FFF8F4">
-<section id="inicio" class="hero-static"><div class="container hero-static-shell"><div><span class="eyebrow">Delicadeza • Conforto • Estilo</span><h1>Pequenos detalhes,<br>grandes memórias.</h1><p id="slogan">Pequenos detalhes, muito carinho.</p><a class="btn primary" href="#produtos">Ver produtos</a><div class="hero-trust"><span>♡ Feito com carinho</span><span>♡ Escolhas delicadas</span></div></div></div></section>
+<section id="inicio" class="hero-carousel" aria-label="Destaques Grazia Babys">
+  <div class="hero-slides">
+    <div class="hero-slide active"><img src="grazia_babys_01.jpg" alt="Coleção Grazia Babys"><div class="hero-shade"></div></div>
+    <div class="hero-slide"><img src="grazia_babys_02.jpg" alt="Moda bebê Grazia Babys"><div class="hero-shade"></div></div>
+    <div class="hero-slide"><img src="grazia_babys_03.jpg" alt="Peças Grazia Babys"><div class="hero-shade"></div></div>
+    <div class="hero-slide"><img src="grazia_babys_04.jpg" alt="Looks Grazia Babys"><div class="hero-shade"></div></div>
+    <div class="hero-slide"><img src="grazia_babys_05.jpg" alt="Coleção para todas as estações"><div class="hero-shade"></div></div>
+    <div class="hero-slide"><img src="grazia_babys_06.jpg" alt="Detalhes Grazia Babys"><div class="hero-shade"></div></div>
+  </div>
+  <div class="container hero-carousel-content">
+    <span class="hero-logo">Grazia <b>Babys</b></span>
+    <span class="eyebrow">Delicadeza • Conforto • Estilo</span>
+    <h1>Delicadeza para<br>todas as estações.</h1>
+    <p id="slogan">Pequenos detalhes, muito carinho.</p>
+    <a class="btn primary" href="#produtos">Ver coleção</a>
+  </div>
+  <div class="hero-dots" aria-label="Escolher imagem">
+    <button class="active" aria-label="Imagem 1"></button><button aria-label="Imagem 2"></button><button aria-label="Imagem 3"></button><button aria-label="Imagem 4"></button><button aria-label="Imagem 5"></button><button aria-label="Imagem 6"></button>
+  </div>
+</section>
 <section class="benefits"><div class="container benefits-grid"><article><b>♡</b><span>Peças especiais<small>escolhidas com carinho</small></span></article><article><b>✦</b><span>Detalhes delicados<small>para momentos inesquecíveis</small></span></article><article><b>◇</b><span>Catálogo organizado<small>fotos, tamanhos e disponibilidade</small></span></article><article><b>◉</b><span>Atendimento próximo<small>converse pelo WhatsApp</small></span></article></div></section>
 <section id="produtos" class="section products-section store-glass-section"><div class="container"><div class="products-heading"><div class="section-title left"><span>Catálogo atualizado</span><h2 id="titulo-produtos">Coleção Grazia Baby</h2></div><p id="resultCount"></p></div><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Pesquisar produto, categoria, cor ou tamanho..."></label><div id="productsGrid" class="products-grid"><p>Carregando catálogo...</p></div><div id="emptyState" class="empty" hidden>Nenhum produto encontrado.</div></div></section>
 <section id="contato" class="section about store-glass-section"><div class="container about-grid"><div class="contact-visual">Grazia <span>Babys</span></div><div><span class="eyebrow" id="nome-loja">Grazia Babys</span><h2 id="slogan2">Pequenos detalhes, muito carinho.</h2><p id="texto-contato">Escolha suas peças favoritas e fale conosco para confirmar tamanhos, cores, estoque, entrega e pagamento.</p><a id="whatsapp-contato" class="contact-card" href="#" target="_blank" rel="noopener"><span><b>Falar no WhatsApp</b><small id="telefone"></small></span></a></div></div></section>
@@ -35,5 +54,9 @@ function bindWhatsApp(){document.querySelectorAll(".wa-product").forEach(a=>a.hr
 document.getElementById("lightboxClose").onclick=()=>document.getElementById("lightbox").classList.remove("open");
 document.querySelector(".menu-button").onclick=()=>document.querySelector(".main-menu").classList.toggle("open");
 document.getElementById("searchInput").oninput=e=>{const q=e.target.value.toLowerCase().trim();render(all.filter(p=>((p.nome||"")+" "+(p.categoria||"")+" "+(p.cor||"")+" "+(p.tamanho||"")+" "+(p.descricao||"")).toLowerCase().includes(q)))};
+const heroSlides=[...document.querySelectorAll(".hero-slide")],heroDots=[...document.querySelectorAll(".hero-dots button")];let heroIndex=0,heroTimer;
+function showHero(i){heroSlides[heroIndex]?.classList.remove("active");heroDots[heroIndex]?.classList.remove("active");heroIndex=(i+heroSlides.length)%heroSlides.length;heroSlides[heroIndex]?.classList.add("active");heroDots[heroIndex]?.classList.add("active")}
+function startHero(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;clearInterval(heroTimer);heroTimer=setInterval(()=>showHero(heroIndex+1),4500)}
+heroDots.forEach((d,i)=>d.onclick=()=>{showHero(i);startHero()});startHero();
 fetch("catalogo.json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.json()).then(data=>{const l=data.loja||{};all=Array.isArray(data.produtos)?data.produtos:[];zap=digits(l.whatsapp);if(l.nome_loja)document.getElementById("nome-loja").textContent=l.nome_loja;if(l.slogan){document.getElementById("slogan").textContent=l.slogan;document.getElementById("slogan2").textContent=l.slogan}if(l.titulo_produtos)document.getElementById("titulo-produtos").textContent=l.titulo_produtos;if(l.texto_contato)document.getElementById("texto-contato").textContent=l.texto_contato;document.getElementById("telefone").textContent=l.telefone_exibicao||"";["whatsapp-contato","whatsapp-floating"].forEach(id=>document.getElementById(id).href=zap?"https://wa.me/"+zap:"#");render(all)}).catch(()=>document.getElementById("productsGrid").innerHTML="<p>Não foi possível carregar o catálogo agora.</p>");
 </script></body></html>
