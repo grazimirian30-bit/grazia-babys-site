@@ -23,3 +23,33 @@
 
 /* Site estático sincronizado com o catálogo Grazia Babys */
 body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;font-size:1.75rem;font-weight:800;color:#6B4636}.brand-text span,.contact-visual span{color:#D89AAA}.hero-static{padding:90px 0;background:linear-gradient(135deg,#fff8f4,#f5e4e8)}.hero-static h1{font-family:Georgia,serif;color:#3d302b;font-size:clamp(2.8rem,6vw,5.2rem);line-height:1.02;margin:10px 0 20px}.hero-static p{font-size:1.15rem}.hero-trust{display:flex;gap:18px;margin-top:28px;color:#6B4636;font-weight:700}.sold-out .product-image img{filter:saturate(.55);opacity:.72}.sold-badge{background:#8b5555!important}.sold-link{font-weight:900;color:#9a5555}.contact-visual{height:360px;border-radius:20px;background:linear-gradient(145deg,#6B4636,#D89AAA);display:grid;place-items:center;color:#fff;font-family:Georgia,serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:800}.footer-brand{font-family:Georgia,serif;font-size:1.8rem}.whatsapp-floating{text-decoration:none}.main-menu.open{display:flex}@media(max-width:620px){.hero-static{padding:70px 0 50px}.hero-static h1{font-size:2.8rem}.hero-trust{flex-direction:column;gap:6px}.contact-visual{height:250px}}
+
+/* Capa em movimento Grazia Babys */
+.hero-carousel{height:min(720px,78vh);min-height:570px;position:relative;display:flex;align-items:center;overflow:hidden;background:#ead8d8}
+.hero-slides,.hero-slide{position:absolute;inset:0}
+.hero-slide{opacity:0;transition:opacity 1s ease;pointer-events:none}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,248,244,.96) 0%,rgba(255,248,244,.82) 34%,rgba(255,248,244,.18) 66%,rgba(60,35,28,.12) 100%)}
+.hero-carousel-content{position:relative;z-index:2}
+.hero-carousel-content>span,.hero-carousel-content>h1,.hero-carousel-content>p,.hero-carousel-content>a{position:relative}
+.hero-logo{display:block;width:max-content;font-family:Georgia,serif;font-size:clamp(2rem,3.5vw,3.25rem);font-weight:800;color:#6B4636;margin-bottom:18px;text-shadow:0 1px 10px rgba(255,255,255,.55)}
+.hero-logo b{color:#D89AAA}
+.hero-carousel .eyebrow{display:block;width:max-content;color:#6B4636}
+.hero-carousel h1{font-family:Georgia,serif;color:#3d302b;font-size:clamp(2.8rem,5.5vw,5.2rem);line-height:1.02;margin:8px 0 18px;max-width:690px}
+.hero-carousel p{font-size:1.12rem;color:#4d3c36;margin:0 0 28px;max-width:520px;font-weight:600}
+.hero-carousel .btn.primary{background:#6B4636;color:#fff}
+.hero-dots{position:absolute;z-index:3;left:50%;bottom:24px;transform:translateX(-50%);display:flex;gap:9px}
+.hero-dots button{width:9px;height:9px;border:0;border-radius:50%;padding:0;background:rgba(255,255,255,.72);box-shadow:0 1px 7px rgba(0,0,0,.18);cursor:pointer;transition:.25s}
+.hero-dots button.active{width:28px;border-radius:999px;background:#D89AAA}
+@media(max-width:620px){
+ .hero-carousel{height:620px;min-height:620px;align-items:flex-end;padding-bottom:68px}
+ .hero-slide img{object-position:center center}
+ .hero-shade{background:linear-gradient(0deg,rgba(255,248,244,.97) 0%,rgba(255,248,244,.86) 31%,rgba(255,248,244,.15) 66%)}
+ .hero-carousel-content{padding-top:245px}
+ .hero-logo{font-size:2.05rem;margin-bottom:10px}
+ .hero-carousel h1{font-size:2.65rem}
+ .hero-carousel p{font-size:1rem;margin-bottom:20px}
+ .hero-dots{bottom:20px}
+}
+@media(prefers-reduced-motion:reduce){.hero-slide{transition:none}}
