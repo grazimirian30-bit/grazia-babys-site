@@ -65,3 +65,6 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
 
 /* Formas de pagamento */
 .payment-note{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 20px}.payment-note b{width:100%;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}.payment-note span{display:inline-flex;align-items:center;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(116,78,65,.16);font-weight:700;font-size:.9rem;box-shadow:0 6px 18px rgba(83,54,45,.06)}
+
+/* Mensagens da marca */
+.hero-message{max-width:520px;margin:0 0 10px;font-family:Georgia,serif;font-size:clamp(1.05rem,2vw,1.35rem);font-weight:700;line-height:1.35}.brand-story{padding:28px 0;background:#fffaf7}.brand-story-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.brand-story article{padding:24px;border:1px solid rgba(107,70,54,.12);border-radius:22px;background:rgba(255,255,255,.78);box-shadow:0 8px 26px rgba(83,54,45,.05)}.brand-story span{font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#a96376}.brand-story h2{margin:8px 0 0;font-family:Georgia,serif;font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.35;color:#5f4034}@media(max-width:680px){.brand-story-grid{grid-template-columns:1fr}.brand-story{padding:18px 0}}
