@@ -62,3 +62,6 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
  .hero-duo-images img:first-child{object-position:58% center}
  .hero-duo-images img:last-child{object-position:45% center}
 }
+
+/* Formas de pagamento */
+.payment-note{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 20px}.payment-note b{width:100%;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}.payment-note span{display:inline-flex;align-items:center;padding:9px 14px;border-radius:999px;background:rgba(255,255,255,.72);border:1px solid rgba(116,78,65,.16);font-weight:700;font-size:.9rem;box-shadow:0 6px 18px rgba(83,54,45,.06)}
