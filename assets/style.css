@@ -104,3 +104,11 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
 .hero-slide{background:#f7efeb}
 .hero-slide img{object-fit:contain;object-position:center center}
 @media(max-width:620px){.hero-slide img{object-fit:contain;object-position:center center}}
+
+/* Ajuste definitivo do carrossel no celular: sem recorte das roupas */
+@media(max-width:620px){
+ .hero-carousel{height:auto!important;min-height:0!important;aspect-ratio:3/4;padding-bottom:0!important;align-items:flex-end}
+ .hero-slides,.hero-slide{inset:0!important}
+ .hero-slide img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important;transform:none!important}
+ .hero-carousel-content{padding-top:0!important;margin-bottom:55px!important}
+}
