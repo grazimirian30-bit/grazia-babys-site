@@ -124,3 +124,10 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
  .hero-carousel-content .hero-message{margin:0 0 16px!important;padding:0!important;background:transparent!important;width:auto!important;max-width:100%!important}
  .hero-dots{bottom:18px!important}
 }
+
+/* Mobile compacto: reduz visualmente as fotos do carrossel */
+@media(max-width:620px){
+ .hero-slides{height:390px!important;aspect-ratio:auto!important;background:#f7efeb!important}
+ .hero-slide img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important}
+ .hero-carousel-content{padding:18px 28px 52px!important}
+}
