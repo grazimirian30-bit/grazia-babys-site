@@ -99,3 +99,8 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
 
 /* Acabamento da vitrine */
 .new-arrivals{padding:26px 0 6px;text-align:center;background:#fff}.new-arrivals span{font-size:.72rem;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:#a96376}.new-arrivals p{margin:7px 0 0;color:#6b554d}.artisan-note{font-weight:700;color:#8b5363}.size-chip{font-weight:800!important;border-color:#d89aaa!important}.product-footer strong{font-size:1.35rem}.checkout-info{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}.checkout-info .delivery-note,.checkout-info .payment-note{margin:0}.payment-note{display:grid;gap:5px;padding:16px 18px;background:#fff8f7;border-left:3px solid #D89AAA;border-radius:0 12px 12px 0}.payment-note b{color:#6B4636}.availability-note{margin:15px 0 10px;font-weight:700;color:#6B4636}@media(max-width:620px){.checkout-info{grid-template-columns:1fr}.product-footer strong{font-size:1.45rem}.chips .size-chip{padding:7px 10px}.new-arrivals{padding-top:20px}}
+
+/* Carrossel: prioriza mostrar o look completo */
+.hero-slide{background:#f7efeb}
+.hero-slide img{object-fit:contain;object-position:center center}
+@media(max-width:620px){.hero-slide img{object-fit:contain;object-position:center center}}
