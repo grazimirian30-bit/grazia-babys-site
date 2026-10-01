@@ -131,3 +131,10 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
  .hero-slide img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:center center!important}
  .hero-carousel-content{padding:18px 28px 52px!important}
 }
+
+/* Mobile: reduz a imagem dentro do quadro, não apenas a altura do carrossel */
+@media(max-width:620px){
+ .hero-slides{height:390px!important;display:flex!important;align-items:center!important;justify-content:center!important;background:#f7efeb!important}
+ .hero-slide{display:flex!important;align-items:center!important;justify-content:center!important}
+ .hero-slide img{width:82%!important;height:82%!important;max-width:82%!important;max-height:82%!important;object-fit:contain!important;object-position:center!important;margin:auto!important}
+}
