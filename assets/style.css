@@ -71,3 +71,28 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
 
 /* Logo original no cabeçalho */
 .brand-image{display:flex;align-items:center;flex:0 0 auto}.brand-image img{display:block;width:auto;height:64px;max-width:190px;object-fit:contain;border-radius:8px}@media(max-width:680px){.brand-image img{height:50px;max-width:145px}.header-row{min-height:68px}}
+
+/* Vitrine fashion — categorias completas */
+.fashion-message{padding:38px 0;text-align:center;background:#fff}
+.fashion-message p{margin:0;font-family:Georgia,serif;font-size:clamp(1.7rem,3vw,2.7rem);color:#5f4034}
+.fashion-message span{display:block;margin-top:7px;color:#876d63}
+.category-showcase{padding:72px 0 58px}
+.category-card{display:block}
+.catalog-sections{padding:20px 0 90px;background:#fff}
+.catalog-category{padding:54px 0;scroll-margin-top:90px;border-bottom:1px solid #eee4df}
+.catalog-category:last-child{border-bottom:0}
+.catalog-category-title{margin-bottom:24px}
+.catalog-category-title span{font-size:.72rem;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:#a96376}
+.catalog-category-title h2{margin:4px 0;font-family:Georgia,serif;font-size:clamp(2rem,4vw,3.2rem);color:#4a342c}
+.delivery-note{display:grid;gap:5px;margin:18px 0 20px;padding:16px 18px;border-left:3px solid #D89AAA;background:#fff8f7;border-radius:0 12px 12px 0}
+.delivery-note b{color:#6B4636}.delivery-note small{color:#806f68}
+.hero-carousel-content{align-self:flex-end;margin-bottom:70px}
+.hero-carousel-content .hero-message{background:rgba(255,248,244,.88);width:max-content;max-width:min(560px,100%);padding:12px 16px;border-radius:4px;margin-bottom:12px}
+@media(max-width:620px){
+ .category-showcase{padding:52px 0 38px}
+ .catalog-category{padding:38px 0}
+ .fashion-message{padding:28px 0}
+ .fashion-message span{font-size:.9rem}
+ .hero-carousel-content{margin-bottom:25px}
+ .hero-carousel-content .hero-message{font-size:1.05rem}
+}
