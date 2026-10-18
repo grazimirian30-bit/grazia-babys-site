@@ -29,8 +29,14 @@
   async function request(method,path,body){
     if(!token)throw new Error("É necessário entrar novamente.");
     let response;
-    try{response=await fetch(API+path,{method,headers:{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(body?{"Content-Type":"application/json"}:{})},body:body?JSON.stringify(body):undefined,cache:"no-store",referrerPolicy:"no-referrer"})}
-    catch(err){throw new Error("Não foi possível acessar a API do GitHub. Verifique sua conexão e tente abrir o painel no Chrome ou outro navegador.")}
+    const controller=new AbortController();
+    const timeout=setTimeout(()=>controller.abort(),15000);
+    try{
+      response=await fetch(API+path,{method,headers:{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(body?{"Content-Type":"application/json"}:{})},body:body?JSON.stringify(body):undefined,cache:"no-store",referrerPolicy:"no-referrer",signal:controller.signal});
+    }catch(err){
+      if(err.name==="AbortError")throw new Error("A conexão com o GitHub demorou demais. Abra o painel no Chrome e confira a internet.");
+      throw new Error("Não foi possível acessar a API do GitHub. Verifique sua conexão e tente abrir o painel no Chrome ou outro navegador.");
+    }finally{clearTimeout(timeout)}
     let data={};try{data=await response.json()}catch(e){}
     if(!response.ok){
       const msg=response.status===401?"O GitHub rejeitou esse token: ele pode estar incompleto, inválido ou expirado.":response.status===403?"O GitHub recusou o acesso. Verifique se o token está ativo e tem Contents: Read and write para o repositório grazia-babys-site.":response.status===404?"O GitHub não encontrou esse recurso para o token. Selecione o repositório grazia-babys-site nas configurações do token.":response.status===409||response.status===422?"Conflito de atualização. Atualize o catálogo antes de publicar de novo.":(data.message||"Falha ao comunicar com o GitHub.");
@@ -195,4 +201,5 @@
   $("closeModalBtn").addEventListener("click",closeEditor);
   $("cancelModalBtn").addEventListener("click",closeEditor);
   window.addEventListener("beforeunload",e=>{if(changed){e.preventDefault();e.returnValue=""}});
+  window.__graziaAdminReady=true;
 })();
