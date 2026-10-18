@@ -78,12 +78,21 @@
         +'<button type="button" class="ghost" data-action="edit" data-id="'+esc(p.id)+'">Editar</button>'
         +'<button type="button" class="ghost '+(sold?'restore-action':'sold-action')+'" data-action="sold" data-id="'+esc(p.id)+'">'+(sold?'↶ Repor':'✕ Esgotado')+'</button>'
         +'<button type="button" class="ghost" data-action="hide" data-id="'+esc(p.id)+'">'+(hidden?'Mostrar':'Ocultar')+'</button>'
+        +'<button type="button" class="ghost" data-action="delete" data-id="'+esc(p.id)+'">Excluir</button>'
         +'</div></div></article>';
     }).join(""):'<p class="empty">Nenhum produto encontrado com estes filtros.</p>';
   }
   function getProduct(id){return products.find(p=>String(p.id)===String(id))}
   function toggleSold(p){if(!p)return;p.esgotado=p.esgotado!==true;if(p.esgotado){p.estoque=0}else if(number(p.estoque)<=0){p.estoque=1}markDirty();render()}
   function toggleHidden(p){if(!p)return;p.oculto=p.oculto!==true;markDirty();render()}
+  function deleteProduct(p){
+    if(!p||busy)return;
+    if(!confirm("Excluir a mercadoria \""+String(p.nome||"sem nome")+"\" do catálogo? A exclusão será publicada apenas quando você clicar em Publicar alterações."))return;
+    products=products.filter(item=>String(item.id)!==String(p.id));
+    uploads.delete(String(p.id));
+    markDirty();render();
+    showMessage("Mercadoria removida da lista. Clique em Publicar alterações para confirmar no site.");
+  }
   function setForm(p){
     $("editId").value=p?String(p.id):"";
     $("formTitle").textContent=p?"Editar produto":"Cadastrar nova peça";
@@ -196,6 +205,7 @@
     if(button.dataset.action==="edit")setForm(p);
     if(button.dataset.action==="sold")toggleSold(p);
     if(button.dataset.action==="hide")toggleHidden(p);
+    if(button.dataset.action==="delete")deleteProduct(p);
   });
   $("productForm").addEventListener("submit",applyForm);
   $("closeModalBtn").addEventListener("click",closeEditor);
