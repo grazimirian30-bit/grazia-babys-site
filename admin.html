@@ -7,7 +7,7 @@
 <meta name="referrer" content="no-referrer">
 <meta name="theme-color" content="#6B4636">
 <title>Painel privado | Grazia Babys</title>
-<link rel="stylesheet" href="admin.css?v=1">
+<link rel="stylesheet" href="admin.css?v=2">
 </head>
 <body>
 <header class="topbar">
@@ -27,11 +27,12 @@
         <div class="token-row"><input id="token" name="token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_..." required><button type="button" id="showToken" class="ghost" aria-label="Mostrar ou ocultar token">👁</button></div>
         <button type="submit" id="loginBtn" class="primary full">Entrar no painel</button>
       </form>
+      <div id="loginMessage" class="message" role="alert" aria-live="assertive" hidden></div>
       <div class="login-help">
         <b>Primeiro acesso</b>
-        <p>Crie um <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">token pessoal de acesso refinado</a> no GitHub, escolhendo <b>apenas</b> o repositório <code>grazia-babys-site</code> e a permissão <b>Contents: Read and write</b>. Copie o token e cole acima. Não use sua senha do GitHub aqui.</p>
+        <p>Crie ou confira seu <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">token pessoal de acesso refinado</a> no GitHub, escolhendo <b>apenas</b> o repositório <code>grazia-babys-site</code> e a permissão <b>Contents: Read and write</b>. Copie o token e cole acima. Não use sua senha do GitHub aqui.</p>
       </div>
-      <p class="fineprint">Seu catálogo continua público; somente a edição exige sua autorização no GitHub.</p>
+      <p class="fineprint">Ao tocar em Entrar, o painel verifica sua conta e suas permissões de acesso no GitHub. Se houver algum problema, o motivo aparecerá acima. Seu catálogo continua público; somente a edição exige autorização.</p>
     </div>
   </section>
   <section id="dashboard" hidden>
@@ -75,6 +76,6 @@
     <p class="fineprint">Aplicar salva a edição na tela. Use “Publicar alterações” no painel para enviar ao GitHub.</p>
   </form>
 </dialog>
-<script src="admin.js?v=1" defer></script>
+<script src="admin.js?v=2" defer></script>
 </body>
 </html>
