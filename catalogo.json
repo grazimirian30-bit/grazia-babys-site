@@ -75,7 +75,8 @@
       "imagem_principal": "uploads/produtos/4aa0f42cba47496bb157284e0e27e108.png",
       "destaque": 1,
       "promocao": 0,
-      "categoria": "Bodies Artesanais"
+      "categoria": "Bodies Artesanais",
+      "esgotado": true
     },
     {
       "id": 9,
