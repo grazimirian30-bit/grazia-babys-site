@@ -25,12 +25,15 @@
   function setBusy(value){busy=value;for(const id of ["loginBtn","saveBtn","saveBottomBtn","addBtn","reloadBtn"])$(id).disabled=value||(id.startsWith("save")&&!changed)}
   function markDirty(){changed=true;$("dirtyNotice").hidden=false;$("lastSync").textContent="Alterações pendentes de publicação.";for(const id of ["saveBtn","saveBottomBtn"])$(id).disabled=busy}
   function clean(){changed=false;uploads.clear();$("dirtyNotice").hidden=true;$("lastSync").textContent="Catálogo sincronizado com o GitHub.";for(const id of ["saveBtn","saveBottomBtn"])$(id).disabled=true}
+  function loginInfo(message,error=false){const el=$("loginMessage");el.textContent=message;el.classList.toggle("error",error);el.hidden=!message}
   async function request(method,path,body){
     if(!token)throw new Error("É necessário entrar novamente.");
-    const response=await fetch(API+path,{method,headers:{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(body?{"Content-Type":"application/json"}:{})},body:body?JSON.stringify(body):undefined,cache:"no-store",referrerPolicy:"no-referrer"});
+    let response;
+    try{response=await fetch(API+path,{method,headers:{"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",...(body?{"Content-Type":"application/json"}:{})},body:body?JSON.stringify(body):undefined,cache:"no-store",referrerPolicy:"no-referrer"})}
+    catch(err){throw new Error("Não foi possível acessar a API do GitHub. Verifique sua conexão e tente abrir o painel no Chrome ou outro navegador.")}
     let data={};try{data=await response.json()}catch(e){}
     if(!response.ok){
-      const msg=response.status===401?"Token inválido ou expirado.":response.status===403?"Sem permissão para editar. Confira as permissões do token.":response.status===409||response.status===422?"Conflito de atualização. Atualize o catálogo antes de publicar de novo.":(data.message||"Falha ao comunicar com o GitHub.");
+      const msg=response.status===401?"O GitHub rejeitou esse token: ele pode estar incompleto, inválido ou expirado.":response.status===403?"O GitHub recusou o acesso. Verifique se o token está ativo e tem Contents: Read and write para o repositório grazia-babys-site.":response.status===404?"O GitHub não encontrou esse recurso para o token. Selecione o repositório grazia-babys-site nas configurações do token.":response.status===409||response.status===422?"Conflito de atualização. Atualize o catálogo antes de publicar de novo.":(data.message||"Falha ao comunicar com o GitHub.");
       throw new Error(msg+" (HTTP "+response.status+")");
     }
     return data;
@@ -143,17 +146,21 @@
   }
   async function enter(event){
     event.preventDefault();if(busy)return;
-    const candidate=$("token").value.trim();
+    const candidate=$("token").value.trim().replace(/^Bearer\s+/i,"");
     if(!candidate){return}
     token=candidate;setBusy(true);
+    loginInfo("Verificando seu token com o GitHub…");
     try{
       const user=await request("GET","/user");
-      if(user.login!==OWNER){token=null;throw new Error("Esta conta GitHub não é a proprietária autorizada do catálogo.")}
+      if(String(user.login||"").toLowerCase()!==OWNER.toLowerCase())throw new Error("Este token pertence à conta "+String(user.login||"desconhecida")+". O catálogo pertence à conta "+OWNER+". Gere o token estando conectada à conta correta.");
+      loginInfo("Conta confirmada: "+OWNER+". Conferindo a permissão de edição do catálogo…");
+      const repository=await request("GET","/repos/"+OWNER+"/"+REPO);
+      if(repository.permissions?.push===false)throw new Error("A conta foi identificada, mas esse token está sem permissão de escrita. Edite o token e libere Repository permissions → Contents → Read and write, somente para grazia-babys-site.");
       await loadCatalog();
-      $("token").value="";
+      $("token").value="";loginInfo("");
       $("loginArea").hidden=true;$("dashboard").hidden=false;$("logoutBtn").hidden=false;
       showMessage("Bem-vinda! Edite as peças e publique no GitHub quando estiver pronta.");
-    }catch(error){token=null;alert(error.message||"Acesso não autorizado. Confira o token.")}
+    }catch(error){token=null;loginInfo(error.message||"Não foi possível entrar. Confira a configuração do token.",true)}
     finally{setBusy(false)}
   }
   function exit(){
