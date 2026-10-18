@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#6B4636">
+<title>Painel privado | Grazia Babys</title>
+<link rel="stylesheet" href="admin.css?v=1">
+</head>
+<body>
+<header class="topbar">
+  <div class="top-inner">
+    <div class="brand"><span class="bear">🧸</span><div><strong>Grazia Babys</strong><small>Painel administrativo</small></div></div>
+    <div class="top-actions"><a href="./" target="_blank" rel="noopener">Ver vitrine ↗</a><button id="logoutBtn" type="button" class="ghost" hidden>Sair</button></div>
+  </div>
+</header>
+<main>
+  <section id="loginArea" class="login">
+    <div class="login-card">
+      <div class="login-icon">🔒</div>
+      <h1>Área da proprietária</h1>
+      <p>Somente a conta GitHub autorizada a alterar o catálogo consegue entrar. O token não é salvo neste site e será esquecido quando você fechar a página.</p>
+      <form id="loginForm">
+        <label for="token">Token de acesso do GitHub</label>
+        <div class="token-row"><input id="token" name="token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="github_pat_..." required><button type="button" id="showToken" class="ghost" aria-label="Mostrar ou ocultar token">👁</button></div>
+        <button type="submit" id="loginBtn" class="primary full">Entrar no painel</button>
+      </form>
+      <div class="login-help">
+        <b>Primeiro acesso</b>
+        <p>Crie um <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">token pessoal de acesso refinado</a> no GitHub, escolhendo <b>apenas</b> o repositório <code>grazia-babys-site</code> e a permissão <b>Contents: Read and write</b>. Copie o token e cole acima. Não use sua senha do GitHub aqui.</p>
+      </div>
+      <p class="fineprint">Seu catálogo continua público; somente a edição exige sua autorização no GitHub.</p>
+    </div>
+  </section>
+  <section id="dashboard" hidden>
+    <div class="dashboard-header"><div><p class="eyebrow">Minha loja · Gestão</p><h1>Controle do catálogo</h1><p>Edite suas peças e publique as mudanças diretamente no GitHub.</p></div><button id="saveBtn" class="primary" type="button" disabled>Publicar alterações</button></div>
+    <div id="message" class="message" role="status" aria-live="polite" hidden></div>
+    <div class="stats">
+      <div><span>Produtos cadastrados</span><strong id="statTotal">0</strong></div>
+      <div><span>Disponíveis</span><strong id="statActive">0</strong></div>
+      <div><span>Esgotados</span><strong id="statSold">0</strong></div>
+      <div><span>Ocultos da vitrine</span><strong id="statHidden">0</strong></div>
+    </div>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="Buscar por roupa, categoria ou tamanho…" aria-label="Buscar produtos">
+      <select id="filter" aria-label="Filtrar por status"><option value="all">Todos os produtos</option><option value="available">Disponíveis</option><option value="sold">Esgotados</option><option value="hidden">Ocultos</option></select>
+      <button id="addBtn" class="secondary" type="button">+ Nova peça</button>
+      <button id="reloadBtn" class="ghost" type="button">↻ Atualizar</button>
+    </div>
+    <p id="dirtyNotice" class="dirty-notice" hidden>● Você tem mudanças ainda não publicadas. Clique em <b>Publicar alterações</b> para atualizar a loja.</p>
+    <div id="products" class="product-grid" aria-live="polite"></div>
+    <div class="footer-actions"><button id="saveBottomBtn" class="primary" type="button" disabled>Publicar alterações</button><span id="lastSync">Nenhuma alteração pendente.</span></div>
+  </section>
+</main>
+<dialog id="editorDialog">
+  <form id="productForm" class="modal" method="dialog">
+    <div class="modal-head"><div><p class="eyebrow">Grazia Babys</p><h2 id="formTitle">Editar produto</h2></div><button type="button" id="closeModalBtn" class="ghost close" aria-label="Fechar">×</button></div>
+    <input type="hidden" id="editId">
+    <div class="form-grid">
+      <label class="span2">Nome da peça<input id="fName" required maxlength="120"></label>
+      <label>Preço (R$)<input id="fPrice" type="number" step=".01" min="0" required></label>
+      <label>Preço promocional (opcional)<input id="fPromo" type="number" step=".01" min="0"></label>
+      <label>Categoria<select id="fCategory"><option>Bodies Artesanais</option><option>Macacões</option><option>CONJUNTOS</option><option>CASACOS</option><option>Vestidos</option><option>Camisetas</option><option>Outros</option></select></label>
+      <label>Tamanho<input id="fSize" maxlength="50" placeholder="Ex.: 6–9 meses"></label>
+      <label>Cor<input id="fColor" maxlength="90"></label>
+      <label>Quantidade no estoque<input id="fQty" type="number" min="0" step="1"></label>
+      <label class="span2">Descrição<textarea id="fDescription" rows="3" maxlength="800"></textarea></label>
+      <label class="span2">Foto atual ou URL da foto<input id="fImage" placeholder="Caminho existente ou endereço https://…" autocomplete="off"></label>
+      <label class="span2">Trocar / adicionar foto (JPG, PNG ou WebP até 2 MB)<input id="fFile" type="file" accept="image/jpeg,image/png,image/webp"></label>
+    </div>
+    <div class="form-options"><label><input id="fSold" type="checkbox"> Marcar como esgotado</label><label><input id="fHidden" type="checkbox"> Ocultar da vitrine</label><label><input id="fFeatured" type="checkbox"> Destacar a peça</label></div>
+    <div class="modal-actions"><button type="button" class="ghost" id="cancelModalBtn">Cancelar</button><button type="submit" class="primary">Aplicar no catálogo</button></div>
+    <p class="fineprint">Aplicar salva a edição na tela. Use “Publicar alterações” no painel para enviar ao GitHub.</p>
+  </form>
+</dialog>
+<script src="admin.js?v=1" defer></script>
+</body>
+</html>
