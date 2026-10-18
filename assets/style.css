@@ -138,3 +138,11 @@ body{background:var(--store-bg,#FFF8F4)}.brand-text{font-family:Georgia,serif;fo
  .hero-slide{display:flex!important;align-items:center!important;justify-content:center!important}
  .hero-slide img{width:82%!important;height:82%!important;max-width:82%!important;max-height:82%!important;object-fit:contain!important;object-position:center!important;margin:auto!important}
 }
+
+
+/* Painel Grazia Babys: aviso de esgotado (2026-10-18) */
+.product-card.sold-out .product-image{position:relative}
+.product-card.sold-out .product-image:after{content:"";position:absolute;inset:0;background:rgba(255,255,255,.22);pointer-events:none}
+.product-card .badge.sold-label{background:#6B4636!important;color:#fff!important;letter-spacing:.04em;z-index:2;position:absolute;top:12px;left:12px}
+.product-card.sold-out .wa-product.is-disabled{background:#ded5d0!important;color:#604e46!important;box-shadow:none!important;border-color:#cabfb9!important;cursor:not-allowed;pointer-events:none}
+.product-card.sold-out .image-hint{display:none}
