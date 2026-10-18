@@ -76,6 +76,15 @@
     <p class="fineprint">Aplicar salva a edição na tela. Use “Publicar alterações” no painel para enviar ao GitHub.</p>
   </form>
 </dialog>
-<script src="admin.js?v=2" defer></script>
+<script>
+  document.addEventListener("DOMContentLoaded",function(){
+    if(window.__graziaAdminReady)return;
+    var el=document.getElementById("loginMessage");
+    el.textContent="O código do painel não carregou corretamente. Abra esta página no Chrome e atualize. Se persistir, me informe esta mensagem.";
+    el.hidden=false;
+    el.classList.add("error");
+  });
+</script>
+<script src="admin.js?v=3" defer></script>
 </body>
 </html>
