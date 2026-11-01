@@ -226,7 +226,8 @@
       "imagem_principal": "uploads/produtos/1983a34a4fc246489bf2a8e695b15a18.jpg",
       "destaque": 0,
       "promocao": 0,
-      "categoria": "CONJUNTOS"
+      "categoria": "CONJUNTOS",
+      "esgotado": true
     },
     {
       "id": 25,
@@ -332,12 +333,12 @@
       "tamanho": "12-18 meses",
       "preco": 59.9,
       "preco_promocional": null,
-      "estoque": 1,
+      "estoque": 0,
       "imagem_principal": "uploads/produtos/334e01756b7944daad96af72915d3a8a.jpg",
       "destaque": 0,
       "promocao": 0,
       "categoria": "Outros",
-      "esgotado": false,
+      "esgotado": true,
       "oculto": false
     },
     {
@@ -349,12 +350,12 @@
       "tamanho": "",
       "preco": 54.9,
       "preco_promocional": null,
-      "estoque": 1,
+      "estoque": 0,
       "imagem_principal": "uploads/produtos/39c6d21c0e5641b28e15c2db7b778bb1.jpg",
       "destaque": 0,
       "promocao": 0,
       "categoria": "Outros",
-      "esgotado": false,
+      "esgotado": true,
       "oculto": false
     },
     {
@@ -366,12 +367,12 @@
       "tamanho": "12-18 meses",
       "preco": 59.9,
       "preco_promocional": null,
-      "estoque": 1,
+      "estoque": 0,
       "imagem_principal": "uploads/produtos/4edc9e05eacb4997b51acf5a822def94.png",
       "destaque": 0,
       "promocao": 0,
       "categoria": "Outros",
-      "esgotado": false,
+      "esgotado": true,
       "oculto": false
     },
     {
